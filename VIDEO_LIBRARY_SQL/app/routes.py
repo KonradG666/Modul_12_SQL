@@ -5,8 +5,8 @@ from app.models import Band, Video
 @app.route("/")
 def video_list():
     videos = Video.query.all()
-    bands = Band.query.all()
-    return render_template("videos.html", videos=videos, bands=bands)
+    band = Band.query.all()
+    return render_template("videos.html", videos=videos, band=band)
 
 
 @app.route("/video/", methods=["POST"])
@@ -17,19 +17,20 @@ def add_video():
     if not title:
         return "Error"
 
-    book = Book(title=title, genre=genre, songs=songs)
-    db.session.add(book)
+    video = Video(title=title, genre=genre, songs=songs)
+    db.session.add(video)
     db.session.commit()
     return redirect("/")
 
 
 @app.route("/band/", methods=["POST"])
 def add_band():
-    band_name = request.form["band_name"]
-    if not band_name:
+    band = request.form["band"]
+    formation = request.form ["formation"]
+    if not name:
         return "Error"
 
-    band = Band(band_name=band_name)
+    band = Band(band=band, formation=formation)
     db.session.add(band)
     db.session.commit()
     return redirect("/")

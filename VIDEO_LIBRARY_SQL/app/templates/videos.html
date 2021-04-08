@@ -1,92 +1,80 @@
-{% extends "base.html" %}
+% extends "base.html" %}
 
-{% block head %} <title>Book Shelf</title> {% endblock %}
+{% block head %} <title>Video Library</title> {% endblock %}
 
 {% block body %}
 <a name="top"></a>
-<h1> Book Library 2.0</h1>
+<h1>Video Library</h1>
 <div class="row">
     <!-- Adding section -->
     <div class="column1">
         <div class="adding_panel">
-            <div class="book_addind">
-                <h3>New Book</h3>
-                <form action="/book/" method="post">
+            <div class="video_addind">
+                <h3>New Video</h3>
+                <form action="/video/" method="post">
                     <p><input type="text" name="title" placeholder="Title..."></p>
                     <p><input type="text" name="genre" placeholder="Genre..."></p>
-                    <p><input type="text" name="pages" placeholder="Pages..."></p>
-                    <input type="submit" value="Add Book">
+                    <p><input type="text" name="pages" placeholder="Songs..."></p>
+                    <input type="submit" value="Add Video">
                 </form>
             </div>
-            <div class="author_adding">
-                <h3>New Author</h3>
-                <form action="/author/" method="post">
-                    <p><input type="text" name="name" placeholder="Name"></p>
-                    <p><input type="text" name="surname" placeholder="Surname"></p>
-                    <p><input type="text" name="birth" placeholder="B-Day..."></p>
-                    <input type="submit" value="Add Author">
+            <div class="band_adding">
+                <h3>New Band</h3>
+                <form action="/band/" method="post">
+                    <p><input type="text" name="name" placeholder="Band Name"></p>
+		    <p><input type="text" name="name" placeholder="Formation"></p>
+                    <input type="submit" value="Add Band">
                 </form>
             </div>
         </div><br><br><br>
         <!-- Assign section -->
         <div class="column">
-            <h3>Assign Author to Book</h3>
+            <h3>Assign Band to Video</h3>
             <form action="/assign/" method="post">
-                <p><input type="text" name="author_id" placeholder="Author's ID..."></p>
-                <p><input type="text" name="books_id" placeholder="Book's ID..."></p>
-                <input type="submit" value="Assign Book">
+                <p><input type="text" name="author_id" placeholder="Band ID"></p>
+                <p><input type="text" name="books_id" placeholder="Video ID..."></p>
+                <input type="submit" value="Assign Video">
             </form>
             <table class="ids">
                 <tr>
-                    <th>Author</th>
-                    <th>Author's ID</th>
+                    <th>Band</th>
+                    <th>band ID</th>
                 </tr>
-                {% for author in authors %}
+                {% for band in bands %}
                 <tr>
-                    <td>{{ author }}</td>
-                    <td>{{ author.id }}</td>
+                    <td>{{ band }}</td>
+                    <td>{{ band.id }}</td>
                 </tr>
                 {% endfor %}
 
                 <tr>
-                    <th>Book</th>
-                    <th>Book's ID</th>
-                    {% for book in books %}
+                    <th>Video</th>
+                    <th>Video ID</th>
+                {% for video in videos %}
                 </tr>
-                <td>{{ book }}</td>
-                <td>{{ book.id }}</td>
-
+                <td>{{ video }}</td>
+                <td>{{ video.id }}</td>
                 </tr>
                 {% endfor %}
 
             </table>
         </div>
     </div>
-    <!-- Book Shelf section -->
+    <!-- Video Shelf section -->
     <div class="column2">
-        <div class="book_disply">
-            <h2>Book shelf</h2>
-            <h4>If books title <span style="text-decoration: line-through;">scored off</span>. <br>Book not in stock.
-            </h4>
+        <div class="video_display">
+            <h2>Video</h2>
             <table>
                 <tr>
-                    <th>Author</th>
-                    <th>Book</th>
-                    <th>Stock</th>
+                    <th>Band</th>
+                    <th>Video</th>
+		    <th>Avaibility</th>
                 </tr>
-                {% for book in books %}
+                {% for video in videos %}
                 <tr>
-                    <td>{{ book.author }}</td>
-                    <td>{% if book.stock %} <strike> {% endif %}{{ book.title }} {% if book.stock %} </strike>{%
-                        endif %}</td>
+                    <td>{{ video.band }}</td>
                     <td>
-                        <button type="button" onclick='window.location.href="/in_stock/{{ book.id }}"'>In Stock
-                        </button>
-                        <br>
-                        <button type="button" onclick='window.location.href="/out_stock/{{ book.id }}"'>Out Of
-                            Stock </button>
-                        <br>
-                        <button type="button" onclick='window.location.href="delete/{{ book.id }}"'>Delete Book
+                        <button type="button" onclick='window.location.href="delete/{{ video.id }}"'>Delete Video
                         </button>
                     </td>
                 </tr>
@@ -100,4 +88,3 @@
     </div>
 </div>
 {% endblock %}
-© 2021 GitHub, Inc.
