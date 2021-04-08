@@ -5,8 +5,8 @@ from app.models import Band, Video
 @app.route("/")
 def video_list():
     videos = Video.query.all()
-    band = Band.query.all()
-    return render_template("videos.html", videos=videos, band=band)
+    bands = Band.query.all()
+    return render_template("videos.html", videos=videos, bands=bands)
 
 
 @app.route("/video/", methods=["POST"])
