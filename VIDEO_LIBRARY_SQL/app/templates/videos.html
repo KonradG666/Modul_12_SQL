@@ -14,7 +14,7 @@
                 <form action="/video/" method="post">
                     <p><input type="text" name="title" placeholder="Title..."></p>
                     <p><input type="text" name="genre" placeholder="Genre..."></p>
-                    <p><input type="text" name="pages" placeholder="Songs..."></p>
+                    <p><input type="text" name="songs" placeholder="Songs..."></p>
                     <input type="submit" value="Add Video">
                 </form>
             </div>
@@ -22,7 +22,7 @@
                 <h3>New Band</h3>
                 <form action="/band/" method="post">
                     <p><input type="text" name="name" placeholder="Band Name"></p>
-		    <p><input type="text" name="name" placeholder="Formation"></p>
+		    <p><input type="text" name="formation" placeholder="Formation Date"></p>
                     <input type="submit" value="Add Band">
                 </form>
             </div>
@@ -31,8 +31,8 @@
         <div class="column">
             <h3>Assign Band to Video</h3>
             <form action="/assign/" method="post">
-                <p><input type="text" name="author_id" placeholder="Band ID"></p>
-                <p><input type="text" name="books_id" placeholder="Video ID..."></p>
+                <p><input type="text" name="band_id" placeholder="Band ID"></p>
+                <p><input type="text" name="videos_id" placeholder="Video ID..."></p>
                 <input type="submit" value="Assign Video">
             </form>
             <table class="ids">
@@ -63,7 +63,7 @@
     <!-- Video Shelf section -->
     <div class="column2">
         <div class="video_display">
-            <h2>Video</h2>
+            <h2>Videos List</h2>
             <table>
                 <tr>
                     <th>Band</th>
@@ -73,7 +73,8 @@
                 {% for video in videos %}
                 <tr>
                     <td>{{ video.band }}</td>
-                    <td>
+                    <td>{{ video.title }}</td>
+		    <td>
                         <button type="button" onclick='window.location.href="delete/{{ video.id }}"'>Delete Video
                         </button>
                     </td>

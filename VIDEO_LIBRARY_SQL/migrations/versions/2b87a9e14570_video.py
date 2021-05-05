@@ -1,8 +1,8 @@
-"""table
+"""video
 
-Revision ID: 0cbf22f986d8
+Revision ID: 2b87a9e14570
 Revises: 
-Create Date: 2021-04-08 10:36:24.151515
+Create Date: 2021-05-05 12:58:05.296103
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0cbf22f986d8'
+revision = '2b87a9e14570'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,6 +32,7 @@ def upgrade():
     sa.Column('genre', sa.String(length=15), nullable=True),
     sa.Column('songs', sa.Integer(), nullable=True),
     sa.Column('band_id', sa.Integer(), nullable=True),
+    sa.Column('avaibility', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['band_id'], ['band.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

@@ -1,0 +1,52 @@
+h1 {
+	text-align: center;
+	font-size: 35px;
+	color: purple;
+	margin-bottom: 0%;
+	border: 1px solid black;
+}
+
+h2 {
+	text-align: center;
+	font-size: 25px;
+}
+
+
+h3 {
+	text-align: center;
+	font-size: 20px;
+}
+
+table, th, td {
+    	border: 1px solid black;
+    	margin: auto;
+    	text-align: center;
+}
+
+
+.adding_panel {
+    	text-align: center;
+
+}
+
+.book_display {
+    	text-align: center;
+}
+
+.column1 {
+    	border: 1px solid black;
+	flex: 40%;
+  }
+
+ .column2 {
+   	border: 1px solid black;
+	flex: 40%;
+  }
+
+ .row {
+    	display: flex;
+  }
+
+p {
+      margin: 5px;
+  }

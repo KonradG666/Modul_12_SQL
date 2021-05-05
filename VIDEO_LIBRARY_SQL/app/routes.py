@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect
 from app import app, db
 from app.models import Band, Video
 
+
 @app.route("/")
 def video_list():
     videos = Video.query.all()
@@ -25,21 +26,21 @@ def add_video():
 
 @app.route("/band/", methods=["POST"])
 def add_band():
-    band = request.form["band"]
-    formation = request.form ["formation"]
+    name = request.form["name"]
+    formation = request.form["formation"]
     if not name:
         return "Error"
 
-    band = Band(band=band, formation=formation)
+    band = Band(name=name, formation=formation)
     db.session.add(band)
     db.session.commit()
     return redirect("/")
 
 
 @app.route("/assign/", methods=["POST"])
-def assign_video():
-    video_id = request.form["video_id"]
-    band_id = request.form["band__id"]
+def assign_video():  # assign book to author
+    video_id = request.form["videos_id"]
+    band_id = request.form["band_id"]
 
     video = Video.query.get(video_id)
     video.band_id = band_id
@@ -61,17 +62,14 @@ def delete_video(video_id):
 
 
 @app.route("/delete/<int:band_id>")
-def delete_author(band_id):
-
+def delete_band(band_id):
     band = Band.query.get(band_id)
-    if not band:
+    if not author:
         return redirect("/")
 
     db.session.delete(band)
     db.session.commit()
     return redirect("/")
-
-
 
 
 if __name__ == "__main__":
